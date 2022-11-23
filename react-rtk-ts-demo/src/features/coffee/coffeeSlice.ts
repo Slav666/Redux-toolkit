@@ -9,14 +9,14 @@ const coffeeSlice = createSlice({
   name: "coffee",
   initialState,
   reducers: {
-    ordered: (state) => {
+    ordered1: (state) => {
       state.numberOfCoffees--;
     },
-    restocked: (state, action: PayloadAction<number>) => {
+    restocked1: (state, action: PayloadAction<number>) => {
       state.numberOfCoffees += action.payload;
     },
   },
 });
 
 export default coffeeSlice.reducer;
-export const { ordered, restocked } = coffeeSlice.actions;
+export const { ordered1, restocked1 } = coffeeSlice.actions;
