@@ -3,15 +3,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { ordered, restocked } from "./cakeSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
-const cakeView = () => {
+const CakeView = () => {
   const numberOfCake = useAppSelector((state) => state.cake.numberOfCakes);
   const dispatch = useAppDispatch();
   const [value, setValue] = useState(1);
   return (
     <div>
-      <h2>Number of Cake:{numberOfCake}</h2>
+      <h2>
+        Number of Cake: <span title="cake">{numberOfCake}</span>
+      </h2>
       <button onClick={() => dispatch(ordered())}>order cake</button>
       <input
+        title="input"
         type="number"
         value={value}
         onChange={(e) => setValue(parseInt(e.target.value))}
@@ -21,4 +24,4 @@ const cakeView = () => {
   );
 };
 
-export default cakeView;
+export default CakeView;
