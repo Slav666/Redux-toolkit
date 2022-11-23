@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { ordered, restocked } from "./coffeeSlice";
+import { ordered1, restocked1 } from "./coffeeSlice";
 import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
@@ -12,13 +12,15 @@ const CoffeeView = () => {
   return (
     <div>
       <h2>Number of Coffee: {numberOfCoffees}</h2>
-      <button onClick={() => dispatch(ordered())}>order coffee</button>
+      <button onClick={() => dispatch(ordered1())}>order coffee</button>
       <input
         type="number"
         value={value}
         onChange={(e) => setValue(parseInt(e.target.value))}
       />
-      <button onClick={() => dispatch(restocked(value))}>restore coffee</button>
+      <button onClick={() => dispatch(restocked1(value))}>
+        restore coffee
+      </button>
     </div>
   );
 };

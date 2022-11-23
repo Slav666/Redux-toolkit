@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import user from "@testing-library/react";
+import user from "@testing-library/user-event";
 import { describe, it, expect } from "vitest";
 import CakeView from "./cakeView";
 import { Provider } from "react-redux";
@@ -40,5 +40,20 @@ describe("Shop stock", () => {
     expect(pageHeadingValue).toHaveTextContent("20");
     fireEvent.click(buttonElement);
     expect(pageHeadingValue).toHaveTextContent("21");
+  });
+  it("number of cake increase by 10 when user  types it in input field and clicks restore cake button twice", async () => {
+    user.setup();
+    render(
+      <Provider store={store}>
+        <CakeView />
+      </Provider>
+    );
+    const amountInput = screen.getByRole("spinbutton");
+    await user.type(amountInput, "10");
+    expect(amountInput).toHaveValue(110);
+    const buttonElement = screen.getByRole("button", { name: "restore cake" });
+    fireEvent.click(buttonElement);
+    const pageHeadingValue = screen.getByTitle("cake");
+    expect(pageHeadingValue).toHaveTextContent("131");
   });
 });
